@@ -18,10 +18,10 @@ public class StudentTest {
         String output = student.getExamScores();
 
 // Then
+        System.out.println("--BEGIN(getExamScores)--");
         System.out.println(output);
-    }
+        System.out.println("\t\t--END--\n");    }
     @Test
-    @DisplayName("Tests getExamScores when score array is empty ☺")
     public void getExamScoresEmpty() {
         // Given
         String firstName = "Dave";
@@ -33,8 +33,9 @@ public class StudentTest {
         String output = student.getExamScores();
 
 // Then
+        System.out.println("--BEGIN(getExamScoresEmpty)--");
         System.out.println(output);
-    }
+        System.out.println("\t\t--END--\n");    }
 
     @Test
     public void setFirstName() {
@@ -73,7 +74,7 @@ public class StudentTest {
         String output = student.getExamScores();
 
         //Then
-        System.out.println("\t\t--BEGIN--");
+        System.out.println("--BEGIN(setExamScore)--");
         System.out.println(output);
         System.out.println("\t\t--END--\n");
 
@@ -91,12 +92,11 @@ public class StudentTest {
         Student student = new Student(firstName,lastName);
 
         //When
-        student.addExamScore(88.4);
-        String output = student.getExamScores();
+        double actual = 88.4;
+        student.addExamScore(actual);
+        double expected = student.examScores[student.examsTaken-1];
         //Then
-        System.out.println("\t\t--BEGIN--");
-        System.out.println(output);
-        System.out.println("\t\t--END--\n");
+        Assert.assertEquals(expected,actual, Integer.MIN_VALUE);
     }
 
 
@@ -140,7 +140,7 @@ public class StudentTest {
         String output = student.toString();
 
         // Then
-        System.out.println("\t\t--BEGIN--");
+        System.out.println("--BEGIN(testToString)--");
         System.out.println(output);
         System.out.println("\t\t--END--\n");
     }
