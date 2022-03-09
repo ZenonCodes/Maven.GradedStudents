@@ -71,7 +71,7 @@ public class Classroom  {
     }
 
     public Student[] getStudentsByScore(){
-
+        return Student.returnSorted(this.students);
     }
 
 }

@@ -58,4 +58,13 @@ public class ClassroomTest {
 
         // Then
     }
+
+    @Test
+    public void getStudentsByScore() {
+        // Given
+
+        // When
+
+        // Then
+    }
 }

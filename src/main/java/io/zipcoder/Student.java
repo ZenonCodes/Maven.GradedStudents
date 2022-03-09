@@ -2,14 +2,16 @@ package io.zipcoder;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
 
 
-public class Student implements Comparable {
+public class Student {
     String firstName;
     String lastName;
     Double[] examScores;
     Integer examsTaken = 0;
+
     public Student(String firstName, String lastName, Double ... scores)
     {
         this.firstName = firstName;
@@ -143,9 +145,19 @@ public class Student implements Comparable {
         examScores = mutateGrades.toArray(examScores);
     }
 
-public Student[] returnSorted (Student...students){
-        ArrayList<Student> sortStudents = new ArrayList<Student>(Arrays.asList(students));
-        Comparator<Student> byAverage = (s1,s2) ->
+public static Student[] returnSorted(Student[] students){
+        ArrayList<Student> sortedList = new ArrayList<>(Arrays.asList(students));
+
+        Comparator<Student> byAvg = (s1, s2) -> s1.getAverageExamScore().compareTo(s2.getAverageExamScore());
+        Comparator<Student> avgDesc = byAvg.reversed();
+        Comparator<Student> byName = (s1,s2) -> s1.getFullName().compareTo(s2.getFullName());
+        Comparator<Student> returnSort = avgDesc.thenComparing(byName);
+        Collections.sort(sortedList, returnSort);
+        Student[] returnArray = new Student [sortedList.size()];
+        returnArray = sortedList.toArray(returnArray);
+
+    return returnArray;
+
 
     }
 }
