@@ -31,6 +31,11 @@ public class Student {
         return lastName;
     }
 
+
+    /**
+     * Returns a string representation of all exams taken.
+     *
+     * */
     public String getExamScores() {
         int i = 1;
         if (examScores.length > 0) {
@@ -42,20 +47,47 @@ public class Student {
             return returnString;
         }else return "You haven't taken any exams yet.";
     }
-    public void addExamScore(Double grade){
-        ArrayList<Double> mutateGrades = new ArrayList<Double>(Arrays.asList(examScores));
-        mutateGrades.add(grade);
-        this.examScores = mutateGrades.toArray(examScores);
+
+
+    /**
+     * Adds a new exam score to the array of scores and updates the exams
+     * taken count.
+     * @param score Score to add to array of scores.
+     *
+     * */
+    public void addExamScore(Double score){
+        ArrayList<Double> mutateScores = new ArrayList<Double>(Arrays.asList(examScores));
+        mutateScores.add(score);
+        this.examScores = mutateScores.toArray(examScores);
         this.examsTaken += 1;
     }
 
+    /**
+     * Takes the number of an exam and modifies it's score.
+     * If the exam number does not exist then it adds the new
+     * score as a new exam.
+     * @param examNumber Exam to modify
+     * @param newScore score to set given exam number to
+     * */
+    public void setExamScore(int examNumber, Double newScore) {
+        if (examNumber > 0) {
+            int examIndex = examNumber - 1;
+            examScores[examIndex] = newScore;
+            if (examIndex >= examScores.length) {
+                addExamScore(newScore);
+            }
+        }
+    }
+
+
+
 
     //Play Methods
-    public void setExamScores(Double ... grades){
-        ArrayList<Double> mutateGrades = new ArrayList<Double>(Arrays.asList(grades));
+    public void resetScores(Double ... scores){
+        ArrayList<Double> mutateGrades = new ArrayList<Double>(Arrays.asList(scores));
         mutateGrades.clear();
-        for (Double grade : grades){
-            mutateGrades.add(grade);
+        for (Double score : scores){
+            mutateGrades.add(score);
             examsTaken += 1;
         }
         examScores = mutateGrades.toArray(examScores);
@@ -68,10 +100,10 @@ public class Student {
         }
         return print;
     }
-    public void addExamScores(Double ... grades){
-        ArrayList<Double> mutateGrades = new ArrayList<Double>(Arrays.asList(grades));
-        for (Double grade : grades){
-            mutateGrades.add(grade);
+    public void addExamScores(Double ... scores){
+        ArrayList<Double> mutateGrades = new ArrayList<Double>(Arrays.asList(scores));
+        for (Double score : scores){
+            mutateGrades.add(score);
         }
         examScores = mutateGrades.toArray(examScores);
     }

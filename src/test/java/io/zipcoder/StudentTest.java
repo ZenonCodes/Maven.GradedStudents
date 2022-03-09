@@ -1,6 +1,5 @@
 package io.zipcoder;
 
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 
@@ -61,8 +60,20 @@ public class StudentTest {
     }
 
     @Test
-    @DisplayName("Tests the ability to set multiple scores")
-    public void setExamScores() {
+    public void setExamScore() {
+        //Given
+        String firstName = "Dave";
+        String lastName = "Krillton";
+        Double[] examScores = {100.0};
+        Student student = new Student(firstName, lastName, examScores);
+
+        // When
+        student.setExamScore(1,200.0);
+        String output = student.getExamScores();
+
+        //Then
+        System.out.println(output);
+
     }
 
     @Test
@@ -83,12 +94,13 @@ public class StudentTest {
         System.out.println(output);
     }
 
-    @Test
-    @DisplayName("Add multiple score to non-empty array")
-    public void addExamScores() {
-    }
+
 }
 
+//    @Test
+//    @DisplayName("Add multiple score to non-empty array")
+//    public void addExamScores() {
+//    }
 //    @Test
 //    public void testSetScores() {
 //        //Given
