@@ -79,8 +79,17 @@ public class Student {
         }
     }
 
-
-
+    /**
+     * Calculates the average score of all exams taken.
+     * @return Average of student's exam scores.
+     * */
+    public Double getAverageExamScore(){
+        Double sum = 0.0;
+        for(Double score : examScores){
+            sum += score;
+        }
+        return sum/examScores.length;
+    }
 
     //Play Methods
     public void resetScores(Double ... scores){

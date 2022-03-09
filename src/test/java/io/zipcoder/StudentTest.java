@@ -95,6 +95,31 @@ public class StudentTest {
     }
 
 
+    @Test
+    public void getAverageExamScore() {
+        // Given
+        String firstName = "Dave";
+        String lastName = "Krillton";
+        Double[] examScores = {72.0, 86.3, 105.0};
+        Student student = new Student(firstName, lastName, examScores);
+
+        // When
+        Double average = (72.0+ 86.3+ 105.0) / 3;
+        Double output = student.getAverageExamScore();
+
+
+        // Then
+        System.out.printf("%.2f \n", output);
+
+    }
+
+    @Test
+    public void resetScores() {
+    }
+
+    @Test
+    public void addExamScores() {
+    }
 }
 
 //    @Test
