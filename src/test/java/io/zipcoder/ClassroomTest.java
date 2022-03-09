@@ -22,4 +22,40 @@ public class ClassroomTest {
 
         // Then
     }
+
+    @Test
+    public void getStudents() {
+        // Given
+
+        // When
+
+        // Then
+    }
+
+    @Test
+    public void getAverageExamScore() {
+        // Given
+
+        // When
+
+        // Then
+    }
+
+    @Test
+    public void addStudent() {
+        // Given
+
+        // When
+
+        // Then
+    }
+
+    @Test
+    public void removeStudent() {
+        // Given
+
+        // When
+
+        // Then
+    }
 }
