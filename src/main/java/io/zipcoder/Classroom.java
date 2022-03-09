@@ -42,7 +42,7 @@ public class Classroom  {
         //create an arraylist so that we can append our Student array
         //convert the array of Students using Arrays.asList(students)
         ArrayList<Student> enroll = new ArrayList<>(Arrays.asList(this.students));
-        // Iterate through the passed parameter an add each student
+        // Iterate through the passed parameter and add each student
         for(Student student : students){
             if(enroll.size() == maxNumberOfStudents){break;}
             enroll.add(student);
@@ -68,6 +68,10 @@ public class Classroom  {
         // convert ArrayList back to Student array and set to
         // our classroom's Student Array
         this.students = prunedClass.toArray(this.students);
+    }
+
+    public Student[] getStudentsByScore(){
+
     }
 
 }

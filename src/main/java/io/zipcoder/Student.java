@@ -2,9 +2,10 @@ package io.zipcoder;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 
 
-public class Student {
+public class Student implements Comparable {
     String firstName;
     String lastName;
     Double[] examScores;
@@ -142,6 +143,9 @@ public class Student {
         examScores = mutateGrades.toArray(examScores);
     }
 
+public Student[] returnSorted (Student...students){
+        ArrayList<Student> sortStudents = new ArrayList<Student>(Arrays.asList(students));
+        Comparator<Student> byAverage = (s1,s2) ->
 
-
+    }
 }
