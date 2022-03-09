@@ -14,13 +14,15 @@ public class StudentTest {
         Double[] examScores = {97.0,93.2,65.71,81.4};
         Student student = new Student(firstName, lastName, examScores);
 
-// When
+        // When
         String output = student.getExamScores();
 
-// Then
+        // Then
         System.out.println("--BEGIN(getExamScores)--");
         System.out.println(output);
-        System.out.println("\t\t--END--\n");    }
+        System.out.println("\t\t--END--\n");
+    }
+
     @Test
     public void getExamScoresEmpty() {
         // Given
@@ -29,37 +31,13 @@ public class StudentTest {
 
         Student student = new Student(firstName, lastName);
 
-// When
+        // When
         String output = student.getExamScores();
 
-// Then
+        // Then
         System.out.println("--BEGIN(getExamScoresEmpty)--");
         System.out.println(output);
         System.out.println("\t\t--END--\n");    }
-
-    @Test
-    public void setFirstName() {
-    }
-
-    @Test
-    public void getFirstName() {
-    }
-
-    @Test
-    public void setLastName() {
-    }
-
-    @Test
-    public void getLastName() {
-    }
-
-    @Test
-    public void setFullName() {
-    }
-
-    @Test
-    public void getFullName() {
-    }
 
     @Test
     public void setExamScore() {
@@ -112,7 +90,6 @@ public class StudentTest {
         double average = (93.4 + 34.2 + 99.33 + 100.76 + 100.87 + 78.0)/examScores.length;
         double output = student.getAverageExamScore();
 
-
         // Then
         Assert.assertEquals(average, output, Integer.MIN_VALUE);
 
@@ -122,9 +99,6 @@ public class StudentTest {
     public void resetScores() {
     }
 
-    @Test
-    public void addExamScores() {
-    }
 
     @Test
     public void testToString() {
@@ -136,7 +110,6 @@ public class StudentTest {
         Student student = new Student(firstName, lastName, examScores);
 
         // When
-
         String output = student.toString();
 
         // Then
@@ -144,24 +117,31 @@ public class StudentTest {
         System.out.println(output);
         System.out.println("\t\t--END--\n");
     }
+
+    @Test
+    @DisplayName("Add multiple scores to non-empty array")
+    public void addExamScores() {
+        //Given
+        String firstName = "Dave";
+        String lastName = "Krillton";
+        Double[] scores = {100.0};
+        Student student = new Student(firstName, lastName, scores);
+
+        //When
+        Double[] scoresToAdd = {97.0,93.2,65.71,81.4};
+        student.addExamScores(scoresToAdd);
+        Double[] expectedScores = {100.0, 97.0, 93.2, 65.71, 81.4};
+        Double[] actualScores = student.examScores;
+
+
+        //Then
+        Assert.assertArrayEquals(actualScores, expectedScores);
+    }
 }
 
-//    @Test
-//    @DisplayName("Add multiple score to non-empty array")
-//    public void addExamScores() {
-//    }
-//    @Test
-//    public void testSetScores() {
-//        //Given
-//        Student dave = new Student("Dave", "Krillton");
-//        //When
-//        Double[] expectedScores = {97.0,93.2,65.71,81.4};
-//        dave.setScores(expectedScores);
-//        Double[] actualScores = dave.getScores();
-//
-//        //Then
-//        Assert.assertArrayEquals(actualScores, expectedScores);
-//    }
+
+
+
 //@Test
 //public void testPrintScores() {
 //    //Given

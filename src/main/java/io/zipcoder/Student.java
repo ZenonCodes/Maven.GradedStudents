@@ -118,7 +118,7 @@ public class Student {
 
     //Play Methods
     public void resetScores(Double ... scores){
-        ArrayList<Double> mutateGrades = new ArrayList<Double>(Arrays.asList(scores));
+        ArrayList<Double> mutateGrades = new ArrayList<Double>(Arrays.asList(examScores));
         mutateGrades.clear();
         for (Double score : scores){
             mutateGrades.add(score);
@@ -135,16 +135,13 @@ public class Student {
         return print;
     }
     public void addExamScores(Double ... scores){
-        ArrayList<Double> mutateGrades = new ArrayList<Double>(Arrays.asList(scores));
+        ArrayList<Double> mutateGrades = new ArrayList<Double>(Arrays.asList(examScores));
         for (Double score : scores){
             mutateGrades.add(score);
         }
         examScores = mutateGrades.toArray(examScores);
     }
-    public void setFullName (String first, String last){
-        this.firstName = first;
-        this.lastName = last;
-    }
+
 
 
 }
