@@ -125,10 +125,10 @@ public class StudentTest {
         String firstName = "Dave";
         String lastName = "Krillton";
         Double[] scores = {100.0};
+        Double[] scoresToAdd = {97.0,93.2,65.71,81.4};
         Student student = new Student(firstName, lastName, scores);
 
         //When
-        Double[] scoresToAdd = {97.0,93.2,65.71,81.4};
         student.addExamScores(scoresToAdd);
         Double[] expectedScores = {100.0, 97.0, 93.2, 65.71, 81.4};
         Double[] actualScores = student.examScores;
