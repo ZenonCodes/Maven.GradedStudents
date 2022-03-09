@@ -3,6 +3,7 @@ package io.zipcoder;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+
 public class Student {
     String firstName;
     String lastName;
@@ -85,10 +86,34 @@ public class Student {
      * */
     public Double getAverageExamScore(){
         Double sum = 0.0;
+        int exams = examScores.length;
         for(Double score : examScores){
             sum += score;
         }
-        return sum/examScores.length;
+        return sum/exams;
+    }
+
+
+    /**
+     * This method creates a string representation
+     * of the calling student instance.
+     * @return String that includes students full name, exam score average and exam scores.
+     * */
+    @Override
+    public String toString(){
+        return "Student Name: " + getFullName() + "\n> Average Score: "
+                + String.format("%.2f", getAverageExamScore()) +"\n> " + getExamScores();
+    }
+
+
+
+    /**
+     * This method combines the calling student's first and last name
+     * into one string representing the student's full name.
+     * @return The first and last name of calling student object separated by a space.
+     * */
+    public String getFullName(){
+        return (firstName + " " + lastName);
     }
 
     //Play Methods
@@ -120,8 +145,6 @@ public class Student {
         this.firstName = first;
         this.lastName = last;
     }
-    public String getFullName(){
-        return (firstName + " " + lastName);
-    }
+
 
 }

@@ -1,5 +1,6 @@
 package io.zipcoder;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 
@@ -72,7 +73,9 @@ public class StudentTest {
         String output = student.getExamScores();
 
         //Then
+        System.out.println("\t\t--BEGIN--");
         System.out.println(output);
+        System.out.println("\t\t--END--\n");
 
     }
 
@@ -91,7 +94,9 @@ public class StudentTest {
         student.addExamScore(88.4);
         String output = student.getExamScores();
         //Then
+        System.out.println("\t\t--BEGIN--");
         System.out.println(output);
+        System.out.println("\t\t--END--\n");
     }
 
 
@@ -100,16 +105,16 @@ public class StudentTest {
         // Given
         String firstName = "Dave";
         String lastName = "Krillton";
-        Double[] examScores = {72.0, 86.3, 105.0};
+        Double[] examScores = {93.4,34.2,99.33, 100.76,100.87, 78.0};
         Student student = new Student(firstName, lastName, examScores);
 
         // When
-        Double average = (72.0+ 86.3+ 105.0) / 3;
-        Double output = student.getAverageExamScore();
+        double average = (93.4 + 34.2 + 99.33 + 100.76 + 100.87 + 78.0)/examScores.length;
+        double output = student.getAverageExamScore();
 
 
         // Then
-        System.out.printf("%.2f \n", output);
+        Assert.assertEquals(average, output, Integer.MIN_VALUE);
 
     }
 
@@ -119,6 +124,25 @@ public class StudentTest {
 
     @Test
     public void addExamScores() {
+    }
+
+    @Test
+    public void testToString() {
+
+        // Given
+        String firstName = "Dave";
+        String lastName = "Krillton";
+        Double[] examScores = {93.4,34.2, 99.33, 100.76, 100.87, 78.0};
+        Student student = new Student(firstName, lastName, examScores);
+
+        // When
+
+        String output = student.toString();
+
+        // Then
+        System.out.println("\t\t--BEGIN--");
+        System.out.println(output);
+        System.out.println("\t\t--END--\n");
     }
 }
 
