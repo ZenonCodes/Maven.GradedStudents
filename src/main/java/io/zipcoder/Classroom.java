@@ -1,9 +1,6 @@
 package io.zipcoder;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Predicate;
 
 public class Classroom  {
@@ -72,6 +69,33 @@ public class Classroom  {
 
     public Student[] getStudentsByScore(){
         return Student.returnSorted(this.students);
+    }
+
+    public String getGradeBook(){
+        ArrayList<Student> stuList =
+                new ArrayList<Student>(Arrays.asList(getStudentsByScore()));
+        HashMap<Character, ArrayList<Student>> GradeBook = new HashMap<Character, ArrayList<Student>>();
+        Student[] lToG = new Student[this.students.length];
+        Collections.reverse(stuList);
+        this.students = stuList.toArray(this.students);
+        Double ninetyPerc, seventyonePerc,
+                thirtyPerc, fiftyOnePerc,
+                eighNinePerc, elevenPerc;
+        int n = 0;
+        //find 90th percentile
+        n = ((90/100) * students.length) - 1;
+        ninetyPerc = students[n].getAverageExamScore();
+        //find 71th percentile
+        n = ((71/100) * students.length) - 1;
+        seventyonePerc = students[n].getAverageExamScore();
+
+        //if 10Perc = students[n]
+        //n = (P/100) x N, where P = percentile,
+        //P = Math.round((n/N) * 100);
+        // N = number of values in a data set
+        // (sorted from smallest to largest),
+        // and n = ordinal rank of a given value.
+
     }
 
 }
