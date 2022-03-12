@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 public class Classroom  {
     Student[] students;
     int maxNumberOfStudents;
+    int rollCall = this.students.length;
 
     public Classroom(Student...students){
         this.students = students;
@@ -30,7 +31,7 @@ public class Classroom  {
         for(Student student : students){
             sum += student.getAverageExamScore();
         }
-        Double weightedAverage = sum/ students.length;
+        Double weightedAverage = sum/ rollCall;
         //each student should be placed into an array and passed to classroom
         return weightedAverage;
     }
@@ -61,6 +62,7 @@ public class Classroom  {
             if(canEnroll.test(student.getFullName())) {
                 prunedClass.add(student);
             }
+
         }
         // convert ArrayList back to Student array and set to
         // our classroom's Student Array
@@ -71,31 +73,40 @@ public class Classroom  {
         return Student.returnSorted(this.students);
     }
 
-    public String getGradeBook(){
-        ArrayList<Student> stuList =
-                new ArrayList<Student>(Arrays.asList(getStudentsByScore()));
-        HashMap<Character, ArrayList<Student>> GradeBook = new HashMap<Character, ArrayList<Student>>();
-        Student[] lToG = new Student[this.students.length];
-        Collections.reverse(stuList);
-        this.students = stuList.toArray(this.students);
-        Double ninetyPerc, seventyonePerc,
-                thirtyPerc, fiftyOnePerc,
-                eighNinePerc, elevenPerc;
-        int n = 0;
-        //find 90th percentile
-        n = ((90/100) * students.length) - 1;
-        ninetyPerc = students[n].getAverageExamScore();
-        //find 71th percentile
-        n = ((71/100) * students.length) - 1;
-        seventyonePerc = students[n].getAverageExamScore();
+    public int getPercIndex(int percentile, int N){
 
+        int ordinalRankIndex = ((percentile/100) * N) - 1;
+        return ordinalRankIndex;
+
+    }
+    /**
+     * Returns an array of indexes for each grade cutoff
+     * */
+    public Double[] gradeCutOff (Student... students){
+        Double a, b, c, d;
+        Double[] grades = new Double[4];
+
+        //Pass in the sorted Class Averages of each student
+        // for each Ordinal index get a corresponding grade cutoff for that percentile
+        a = students[getPercIndex(90, rollCall)].getAverageExamScore();
+        b = students[getPercIndex(70, rollCall)].getAverageExamScore();
+        c = students[getPercIndex(50, rollCall)].getAverageExamScore();
+        d = students[getPercIndex(11, rollCall)].getAverageExamScore();
+//        grades = {a,b,c,d};
+    }
+    public String getGradeBook(){
+
+        ArrayList<Student> stuList = new ArrayList<Student>(Arrays.asList(getStudentsByScore()));
+        Student[] lToG = new Student[rollCall];
+        Collections.reverse(stuList);
+        lToG = stuList.toArray(lToG);
         //if 10Perc = students[n]
         //n = (P/100) x N, where P = percentile,
         //P = Math.round((n/N) * 100);
         // N = number of values in a data set
         // (sorted from smallest to largest),
         // and n = ordinal rank of a given value.
-
+        HashMap<Character, ArrayList<Student>> GradeBook = new HashMap<Character, ArrayList<Student>>();
     }
 
 }
